@@ -1,0 +1,29 @@
+{% extends 'tracker/layout.html' %}
+
+{% block body %}
+<div style="text-align: center; color: brown;">
+<h1> Today's Tasks </h1>
+</div>
+<ul> 
+    {% for task in tasks %}
+          <li>{{task}}</li>
+    {% empty %}
+          <li>NO TASKS TO BE DONE</li>      
+    {% endfor %}      
+</ul>
+
+<h2 style="color: blue;">Do you want to remove a task ? Select task below</h2>
+<form action="{%url 'index' %}" method="post">
+    {% csrf_token %}
+    <select name="task">
+        {% for task in tasks %}
+        <option value="{{task}}">{{task}}</option>
+        {% empty %}
+        <option>No Tasks</option>
+        {% endfor %}
+    </select>
+    <input type="submit" placeholder="DELETE">
+</form>
+
+<a href="{% url 'add' %}">Click Here to Add Tasks </a>
+{% endblock %}

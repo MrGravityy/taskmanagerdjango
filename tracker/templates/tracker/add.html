@@ -1,0 +1,16 @@
+{% extends 'tracker/layout.html' %}
+
+{% block body %}
+
+<h1>ADD NEW TASK</h1>
+
+<form action="{% url 'add' %}", method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" placeholder="Add Task">
+</form>
+
+
+<a href="{% url 'index' %}">SEE TASKS</a>
+{% endblock %}
+
